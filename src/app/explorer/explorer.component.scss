@@ -1,0 +1,8 @@
+@import '../../styles-variables';
+
+
+@media (min-width: map-get($grid-breakpoints, sm)) {
+  nav {
+    width: 80%;
+  }
+}
