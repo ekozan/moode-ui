@@ -1,0 +1,30 @@
+
+$playerheight: 100px;
+
+#player{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #f0f0f0;
+  height: $playerheight;
+  text-align: center;
+}
+
+#player #player_controls{
+  float: right;
+}
+
+#player .options{
+  float: left;
+}
+
+#player .cover{
+   float: left;
+}
+
+#player .cover img{
+  padding: 5px;
+  height: $playerheight - 10px;
+  width: $playerheight - 10px;
+}

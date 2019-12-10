@@ -1,1 +1,21 @@
-<p>player works!</p>
+<div id="player" (click)="openPlayer($event)">
+
+  <div class="cover">
+    <img src="http://volumio.home{{state.coverurl}}">
+  </div>
+
+  <div class="options">(options)</div>
+
+  <div class="song_info">
+    <div class="line1">
+      {{state.title}}
+    </div>
+    <div class="line2">
+      {{state.album}} - {{state.artist}}
+    </div>
+  </div>
+
+  <div id="player_controls">
+    {{state.state}}
+  </div>
+</div>

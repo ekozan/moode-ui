@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LibraryService } from '../library.service';
+import { LibraryService } from '../library/library.service';
 
 @Component({
   selector: 'app-explorer',

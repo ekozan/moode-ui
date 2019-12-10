@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient,HttpErrorResponse } from '@angular/common/http';
 import { MusicFile } from './musicfile';
 import { Album } from './album';
@@ -10,9 +10,18 @@ import { MusicLibrary } from './musiclibrary';
   providedIn: 'root'
 })
 
+
+
+
 export class LibraryService {
+
+
+
   apiURL: string = 'http://volumio.home/command/moode.php?cmd=loadlib';
-  library = new MusicLibrary();
+  library: MusicLibrary = new MusicLibrary();
+
+  @Output()
+   change: EventEmitter<any> = new EventEmitter();
 
   constructor(private _httpClient: HttpClient) {
     this.getLibrary()
@@ -29,11 +38,11 @@ export class LibraryService {
 
 
           this.library.musics.forEach(music => {
-             console.log(music);
+              //console.log(music);
 
-              if(music.artist != undefined && music.artist in this.library.artists == false){
-                console.log(music.artist)
-              }
+              //if(music.artist != undefined && music.artist in this.library.artists == false){
+              //  console.log(music.artist)
+              //}
           });
           //proccess it :)
 
@@ -60,6 +69,10 @@ export class LibraryService {
   }
 
   public getAlbums(){
+
+  }
+
+  public getTracks(){
 
   }
 

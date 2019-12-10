@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LibraryService } from './library.service';
+import { LibraryService } from './library/library.service';
 import { ExplorerComponent } from './explorer/explorer.component';
 import { PlayerComponent } from './player/player.component';
 import { RadioComponent } from './radio/radio.component';
