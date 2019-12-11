@@ -1,30 +1,92 @@
+@import '../../styles-variables';
 
-$playerheight: 100px;
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
+
+$player_height: 100px;
+$cover_padding: 0;
 
 #player{
+  @include  make-container();
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  height: $player_height;
   border-top: 1px solid #f0f0f0;
-  height: $playerheight;
-  text-align: center;
+  background-color: #fff;
 }
 
 #player #player_controls{
-  float: right;
+  @include make-col-ready(0);
+  @include make-col(3,13);
+  //float: right;
 }
 
 #player .options{
-  float: left;
+  @include make-col-ready(0);
+  @include make-col(1,13);
 }
 
 #player .cover{
-   float: left;
+  @include make-col-ready(0);
+  @include make-col(2,13);
 }
 
 #player .cover img{
-  padding: 5px;
-  height: $playerheight - 10px;
-  width: $playerheight - 10px;
+  padding: $cover_padding;
+  height: $player_height - 2*$cover_padding;
+  width: $player_height - 2*$cover_padding;
+}
+
+#player .song_info{
+  @include make-col-ready(0);
+  @include make-col(7,13);
+  text-align: center;
+}
+#player .song_info .row{
+  text-align: center;
+}
+
+
+
+::ng-deep {
+
+  #player .ng5-slider {
+    margin: 10px 0 10px;
+  }
+  #player .ng5-slider .ng5-slider-bar {
+    background: #f2f2f2;
+    height: 10px;
+  }
+  #player .ng5-slider .ng5-slider-selection {
+    background: #888;
+  }
+
+  #player .ng5-slider .ng5-slider-pointer {
+    width: 14px;
+    height: 14px;
+    top: auto; /* to remove the default positioning */
+    bottom: -7px;
+    background-color: #333;
+    border-radius: 7px;
+  }
+
+  #player .ng5-slider .ng5-slider-pointer:after {
+    display: none;
+  }
+
+  #player .ng5-slider .ng5-slider-bubble {
+    bottom: 14px;
+  }
+
+  #player .ng5-slider .ng5-slider-limit {
+    font-weight: bold;
+    color: orange;
+  }
+
+
+
+  #player .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+    background: orange;
+  }
 }

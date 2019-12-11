@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import { Ng5SliderModule } from 'ng5-slider';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LibraryService } from './library/library.service';
@@ -25,6 +28,7 @@ import { AlbumdetailsComponent } from './albumdetails/albumdetails.component';
     AlbumdetailsComponent
   ],
   imports: [
+    Ng5SliderModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule

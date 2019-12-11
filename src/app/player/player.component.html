@@ -1,21 +1,28 @@
 <div id="player" (click)="openPlayer($event)">
-
-  <div class="cover">
-    <img src="http://volumio.home{{state.coverurl}}">
-  </div>
-
-  <div class="options">(options)</div>
-
-  <div class="song_info">
-    <div class="line1">
-      {{state.title}}
+  <div class="row">
+    <div class="cover">
+      <img src="http://volumio.home{{state.coverurl}}">
     </div>
-    <div class="line2">
-      {{state.album}} - {{state.artist}}
-    </div>
-  </div>
 
-  <div id="player_controls">
-    {{state.state}}
+    <div class="options">(options)</div>
+
+    <div class="song_info">
+      <div>
+        {{state.title}}
+      </div>
+      <div>
+        {{state.album}} - {{state.artist}}
+      </div>
+      <div>
+          <ng5-slider [(value)]="value"  (userChange)="onUserTimeBarChange($event)" [options]="options"></ng5-slider>
+      </div>
+    </div>
+
+    <div id="player_controls">
+      <button type="button" (click)="ps.previous()" name="prev">prev</button>
+      <button type="button" (click)="onClickTogglePlayPause()" name="play">{{state.state}}</button>
+      <button type="button" (click)="ps.next()" name="next">next</button>
+
+    </div>
   </div>
 </div>
