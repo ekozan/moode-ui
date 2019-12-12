@@ -1,6 +1,7 @@
 import { Injectable, Output, EventEmitter   } from '@angular/core';
 import { HttpClient,HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { State } from './state';
+import { Config } from '../app.config';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,8 @@ import { State } from './state';
 
 export class PlayerService {
 
-  private engineApiURL: string = "http://volumio.home/engine-mpd.php";
-  private cmdApiURL: string = "http://volumio.home/command/";
+  private engineApiURL: string = Config.MoodeURL+"/engine-mpd.php";
+  private cmdApiURL: string = Config.MoodeURL+"/command/";
 
   public state: State = new State();
 
@@ -49,11 +50,6 @@ export class PlayerService {
     );
   }
 
-  private handleSetTimeOutEvent(event: State){
-    if(event == ""){
-
-    }
-  }
 
   public play() {
     this.sendCmd("play");
@@ -88,7 +84,7 @@ export class PlayerService {
   }
 
   public randomToggle(){
-    if(this.state.random == 0){
+    if(this.state.random === 0){
       this.sendCmd("random 1");
     }else{
       this.sendCmd("random 0");
@@ -96,7 +92,7 @@ export class PlayerService {
   }
 
   public repeatToggle(){
-    if(this.state.repeat == 0){
+    if(this.state.repeat === 0){
       this.sendCmd("repeat 1");
     }else{
       this.sendCmd("repeat 0");

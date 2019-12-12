@@ -4,3 +4,20 @@
 
 @import '~bootstrap/scss/bootstrap-reboot';
 @import '~bootstrap/scss/bootstrap-grid';
+
+
+$material-icons-font-path: '~material-icons/iconfont/';
+$material-icons-font-name: 'MaterialIcons-Regular' !default;
+$material-icons-font-size: 24px !default;
+$material-icons-font-family: 'Material Icons' !default;
+
+@import '~material-icons/iconfont/material-icons.scss';
+
+.material-icons {
+  @include material-icons();
+}
+
+
+body{
+  background-color: #ccc;
+}

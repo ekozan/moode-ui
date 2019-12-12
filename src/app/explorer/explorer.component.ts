@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LibraryService } from '../library/library.service';
+import { LibraryService } from '../moodeservice/library.service';
 
 @Component({
   selector: 'app-explorer',

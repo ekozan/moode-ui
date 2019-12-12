@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerService } from './player.service';
-import { State } from './state';
+import { interval } from 'rxjs';
 import { Options } from 'ng5-slider';
 
-import { interval } from 'rxjs';
+import { PlayerService } from '../moodeservice/player.service';
+import { State } from '../moodeservice/state';
+import { Config } from '../app.config';
+
+
+import { ResizeService } from '../size-detector/resize.service';
+import { SCREEN_SIZE } from '../size-detector/screen-size.enum';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-player',
@@ -24,7 +30,18 @@ export class PlayerComponent implements OnInit {
    };
   value: number = 0;
 
-  constructor(private ps: PlayerService) {
+  size: SCREEN_SIZE;
+  SCREEN_SIZE= SCREEN_SIZE;
+
+  moodeURL: string = Config.MoodeURL;
+
+  constructor(private ps: PlayerService, private rs: ResizeService) {
+
+    this.rs.onResize$
+     .pipe(delay(0))
+     .subscribe(size => {
+       this.size = size;
+     });
 
     this.state = ps.state;
 

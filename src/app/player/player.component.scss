@@ -8,28 +8,44 @@ $cover_padding: 0;
 
 #player{
   @include  make-container();
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   height: $player_height;
   border-top: 1px solid #f0f0f0;
   background-color: #fff;
+  z-index: 999;
 }
 
 #player #player_controls{
   @include make-col-ready(0);
-  @include make-col(3,13);
-  //float: right;
+  @include media-breakpoint-up(sm) {
+    @include make-col(5,14);
+  }
+  @include make-col-auto();
+  height: $player_height;
+  text-align: center;
+
+}
+#player #player_controls button{
+  border: none;
+  background:none;
+}
+
+#player #player_controls button i{
+  font-size: 50px; /* Preferred icon size */
+   color: #5f6368;
+   font-weight: 400;
 }
 
 #player .options{
   @include make-col-ready(0);
-  @include make-col(1,13);
+  @include make-col(3,14);
 }
 
 #player .cover{
   @include make-col-ready(0);
-  @include make-col(2,13);
+  @include make-col(2,14);
 }
 
 #player .cover img{
@@ -40,7 +56,7 @@ $cover_padding: 0;
 
 #player .song_info{
   @include make-col-ready(0);
-  @include make-col(7,13);
+  @include make-col(4,14);
   text-align: center;
 }
 #player .song_info .row{

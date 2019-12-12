@@ -1,10 +1,10 @@
 <div id="player" (click)="openPlayer($event)">
   <div class="row">
     <div class="cover">
-      <img src="http://volumio.home{{state.coverurl}}">
+      <img src="{{moodeURL}}{{state.coverurl}}">
     </div>
 
-    <div class="options">(options)</div>
+    <div *ngIf="size>SCREEN_SIZE.XS" class="options">(options)</div>
 
     <div class="song_info">
       <div>
@@ -19,10 +19,15 @@
     </div>
 
     <div id="player_controls">
-      <button type="button" (click)="ps.previous()" name="prev">prev</button>
-      <button type="button" (click)="onClickTogglePlayPause()" name="play">{{state.state}}</button>
-      <button type="button" (click)="ps.next()" name="next">next</button>
-
+      <button *ngIf="size>SCREEN_SIZE.XS" type="button" (click)="ps.previous()" name="prev">
+        <i class="material-icons">skip_previous</i>
+      </button>
+      <button type="button" (click)="onClickTogglePlayPause()" name="play">
+        <i class="material-icons">{{state.state=='play'?'pause':'play_arrow'}}</i>
+      </button>
+      <button *ngIf="size>SCREEN_SIZE.XS" type="button" (click)="ps.next()" name="next">
+        <i class="material-icons">skip_next</i>
+      </button>
     </div>
   </div>
 </div>

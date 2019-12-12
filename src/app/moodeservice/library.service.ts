@@ -5,6 +5,7 @@ import { Album } from './album';
 import { Artist } from './artist';
 import { Genre } from './genre';
 import { MusicLibrary } from './musiclibrary';
+import { Config } from '../app.config';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class LibraryService {
 
 
 
-  apiURL: string = 'http://volumio.home/command/moode.php?cmd=loadlib';
+  apiURL: string = Config.MoodeURL+'/command/moode.php?cmd=loadlib';
   library: MusicLibrary = new MusicLibrary();
 
   @Output()

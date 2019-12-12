@@ -1,0 +1,21 @@
+#cover-backdrop{
+  height: 100vh;
+  filter: blur(20px);
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: scale(1.2);
+  z-index: 1;
+}
+
+#cover-backdrop img{
+  min-width: 100vw;
+  min-height: 100vh;
+  max-width: unset;
+  transform: translate(-50%, -50%);
+  background-position: center center;
+  position: relative;
+  top: 50vh;
+  left: 50vw;
+}
