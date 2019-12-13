@@ -1,5 +1,9 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient,HttpErrorResponse } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+
 import { MusicFile } from './musicfile';
 import { Album } from './album';
 import { Artist } from './artist';
@@ -12,43 +16,32 @@ import { Config } from '../app.config';
 })
 
 
-
-
 export class LibraryService {
+  private _tracks = new BehaviorSubject<MusicFile[]>([]);
+  private apiURL: string = Config.MoodeURL+'/command/moode.php?cmd=loadlib';
+  private dataStore: MusicLibrary = new MusicLibrary();
 
-
-
-  apiURL: string = Config.MoodeURL+'/command/moode.php?cmd=loadlib';
-  library: MusicLibrary = new MusicLibrary();
+  readonly tracks = this._tracks.asObservable();
 
   @Output()
    change: EventEmitter<any> = new EventEmitter();
 
+
+
+
   constructor(private _httpClient: HttpClient) {
-    this.getLibrary()
+    this.loadLibrary();
   }
 
-  onInit(){
-
-  }
-
-  public getLibrary(){
+  public loadLibrary(){
       this._httpClient.get<MusicFile[]>(`${this.apiURL}`).subscribe(
         data => {
-          this.library.musics = data;
+          this.dataStore.musics = data;
+          this._tracks.next(Object.assign({}, this.dataStore).musics);
 
-
-          this.library.musics.forEach(music => {
-              //console.log(music);
-
-              //if(music.artist != undefined && music.artist in this.library.artists == false){
-              //  console.log(music.artist)
-              //}
+          this.dataStore.musics.forEach(music => {
           });
-          //proccess it :)
-
-
-          console.log(this.library);
+          console.log(this.dataStore);
         },
         (err: HttpErrorResponse) => {
           console.log (err.message);
@@ -57,24 +50,7 @@ export class LibraryService {
   }
 
   public search(searchtxt: String): MusicFile[]{
-    return this.library.musics;
-  }
-
-
-  public getGenres(){
-
-  }
-
-  public getArtists(){
-
-  }
-
-  public getAlbums(){
-
-  }
-
-  public getTracks(){
-
+    return this.dataStore.musics;
   }
 
 }

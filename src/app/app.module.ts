@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 //import { LibraryService } from './library/library.service';
 
 import { ExplorerComponent } from './explorer/explorer.component';
+import { ExplorerItemComponent } from './explorer/explorer-item.component';
+
 import { PlayerComponent } from './player/player.component';
 import { RadioComponent } from './radio/radio.component';
 import { ConfigpanelComponent } from './configpanel/configpanel.component';
@@ -25,6 +27,7 @@ import { SizeDetectorComponent } from './size-detector/size-detector.component';
   declarations: [
     AppComponent,
     ExplorerComponent,
+    ExplorerItemComponent,
     PlayerComponent,
     RadioComponent,
     ConfigpanelComponent,

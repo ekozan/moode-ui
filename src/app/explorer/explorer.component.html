@@ -1,0 +1,17 @@
+<div id="explorer-content">
+
+  <ng-template [ngIf]="viewstyle==VIEW_STYLE.TAG">
+    TAG Collumns
+  </ng-template>
+
+  <ng-template [ngIf]="viewstyle==VIEW_STYLE.GRID">
+    ok
+  </ng-template>
+
+  <ul id="collection">
+    <li *ngFor="let item of tracks | async">
+      <app-explorer-item [item]="item" [viewstyle]="viewstyle"></app-explorer-item>
+    </li>
+  </ul>
+
+</div>

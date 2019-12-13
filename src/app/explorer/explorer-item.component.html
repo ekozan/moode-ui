@@ -1,0 +1,12 @@
+<ng-template [ngIf]="viewstyle==VIEW_STYLE.TAG">
+  TAG Collumns
+</ng-template>
+
+<ng-template [ngIf]="viewstyle==VIEW_STYLE.GRID">
+
+  <div class="grid" (click)="trackClick($event,item)" (dblclick)="trackClick($event,item)" (contextmenu)="trackClick($event,item)">
+    <img class="covert" src="{{getImg(item.file)}}" draggable="false">
+    <p>{{ item.title }}</p>
+  </div>
+
+</ng-template>

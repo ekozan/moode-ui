@@ -1,7 +1,7 @@
 export class State{
   volume: number
-  repeat: boolean
-  random: boolean
+  repeat: number
+  random: number
   single: number
   consume: number
   playlist: number

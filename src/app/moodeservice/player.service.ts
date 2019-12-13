@@ -33,6 +33,7 @@ export class PlayerService {
           this.state = data;
           //this.handleSetTimeOutEvent();
           this.event.emit(this.state);
+          console.log(this.state);
           this.StateApiCall();
       }
     );
@@ -84,7 +85,7 @@ export class PlayerService {
   }
 
   public randomToggle(){
-    if(this.state.random === 0){
+    if(this.state.random == 0){
       this.sendCmd("random 1");
     }else{
       this.sendCmd("random 0");

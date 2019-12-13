@@ -1,3 +1,4 @@
+
 export class MusicFile{
     id: number;
     file: string;
@@ -13,4 +14,5 @@ export class MusicFile{
     genre: string;
     time_mmss: string;
     last_modified: string;
+
 }
