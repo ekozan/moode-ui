@@ -1,11 +1,13 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { LibraryService } from '../moodeservice/library.service';
+import { ActionService } from '../action-service/action-service.service';
+
 import { VIEW_STYLE } from './view-style.enum';
 import { VIEW_TYPE } from './view-type.enum';
 import { Item } from './explorer-item';
-import {Md5} from 'ts-md5/dist/md5';
+import { Md5 } from 'ts-md5/dist/md5';
 import { Config } from '../app.config';
-import { MusicFile } from '../moodeservice/musicfile';
+import { Track } from '../moodeservice/track';
 
 
 @Component({
@@ -19,6 +21,7 @@ export class ExplorerItemComponent implements OnInit {
     @Input() viewstyle: VIEW_STYLE;
 
     private VIEW_STYLE = VIEW_STYLE
+    constructor(private _as: ActionService){}
 
     ngOnInit(){
 
@@ -29,8 +32,7 @@ export class ExplorerItemComponent implements OnInit {
       return Config.MoodeURL + '/imagesw/thmcache/' + encodeURIComponent(md5) + '.jpg';
     }
 
-    private trackClick(event, item: MusicFile){
-      console.log(event);
-      console.log(item);
+    private trackClick(context, event, item: Track){
+      this._as.handleAction(context, event, item);
     }
 }

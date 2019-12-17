@@ -18,7 +18,7 @@ import { delay } from 'rxjs/operators';
 })
 export class PlayerComponent implements OnInit {
    state: State;
-   intervalsource = interval(1000);
+   intervalsource = interval(500);
 
    options: Options = {
      floor: 0,
@@ -47,7 +47,7 @@ export class PlayerComponent implements OnInit {
 
     ps.event.subscribe(data => {
       this.state = data;
-      this.value = this.state.elapsed*100/this.state.duration;
+      this.value = this.state.elapsed*100/this.state.time;
     })
 
     this.intervalsource.subscribe(data => {
@@ -74,8 +74,8 @@ export class PlayerComponent implements OnInit {
 
   private renderTimeBar(){
       if(this.state.state == "play"){
-        if(this.value < this.state.duration){
-          this.value += 100/this.state.time;
+        if(this.value <= 100){
+          this.value += (100/this.state.time)/2;
         }
       }
   }

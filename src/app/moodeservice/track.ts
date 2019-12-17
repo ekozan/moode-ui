@@ -1,8 +1,6 @@
-
-export class MusicFile{
+export class Track {
     id: number;
     file: string;
-    tracknum: number;
     title: string;
     disc: number;
     artist: string;
@@ -14,5 +12,5 @@ export class MusicFile{
     genre: string;
     time_mmss: string;
     last_modified: string;
-
+    type: string;
 }

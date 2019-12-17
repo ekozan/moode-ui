@@ -4,7 +4,7 @@
 
 <ng-template [ngIf]="viewstyle==VIEW_STYLE.GRID">
 
-  <div class="grid" (click)="trackClick($event,item)" (dblclick)="trackClick($event,item)" (contextmenu)="trackClick($event,item)">
+  <div class="grid" (click)="trackClick($event,'explorer',item)" (dblclick)="trackClick($event,'explorer',item)" (contextmenu)="trackClick($event,'explorer',item)">
     <img class="covert" src="{{getImg(item.file)}}" draggable="false">
     <p>{{ item.title }}</p>
   </div>

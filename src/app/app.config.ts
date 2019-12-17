@@ -1,3 +1,3 @@
 export const Config = {
-  MoodeURL: 'http://volumio.home'
+  MoodeURL: 'http://169.254.46.5'
 }

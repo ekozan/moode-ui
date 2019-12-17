@@ -21,6 +21,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AlbumdetailsComponent } from './albumdetails/albumdetails.component';
 import { BackgroundmanagerComponent } from './backgroundmanager/backgroundmanager.component';
 import { SizeDetectorComponent } from './size-detector/size-detector.component';
+import { ContextmenuComponent } from './contextmenu/contextmenu.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { SizeDetectorComponent } from './size-detector/size-detector.component';
     MenuComponent,
     AlbumdetailsComponent,
     BackgroundmanagerComponent,
-    SizeDetectorComponent
+    SizeDetectorComponent,
+    ContextmenuComponent
   ],
   imports: [
     Ng5SliderModule,

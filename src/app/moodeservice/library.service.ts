@@ -3,8 +3,7 @@ import { HttpClient,HttpErrorResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-
-import { MusicFile } from './musicfile';
+import { Track } from './track';
 import { Album } from './album';
 import { Artist } from './artist';
 import { Genre } from './genre';
@@ -17,7 +16,7 @@ import { Config } from '../app.config';
 
 
 export class LibraryService {
-  private _tracks = new BehaviorSubject<MusicFile[]>([]);
+  private _tracks = new BehaviorSubject<Track[]>([]);
   private apiURL: string = Config.MoodeURL+'/command/moode.php?cmd=loadlib';
   private dataStore: MusicLibrary = new MusicLibrary();
 
@@ -34,7 +33,16 @@ export class LibraryService {
   }
 
   public loadLibrary(){
-      this._httpClient.get<MusicFile[]>(`${this.apiURL}`).subscribe(
+      this._httpClient.get<Track[]>(`${this.apiURL}`)
+      .pipe(
+         map((data: any[]) => data.map((item: any) => {
+           const track = new Track();
+           Object.assign(track, item);
+           track.type = "track";
+           return track;
+         }))
+      )
+      .subscribe(
         data => {
           this.dataStore.musics = data;
           this._tracks.next(Object.assign({}, this.dataStore).musics);
@@ -49,7 +57,7 @@ export class LibraryService {
       );
   }
 
-  public search(searchtxt: String): MusicFile[]{
+  public search(searchtxt: String): Track[]{
     return this.dataStore.musics;
   }
 
