@@ -15,52 +15,82 @@ $cover_padding: 0;
   border-top: 1px solid #f0f0f0;
   background-color: #fff;
   z-index: 900;
-}
 
-#player #player_controls{
-  @include make-col-ready(0);
-  @include media-breakpoint-up(sm) {
-    @include make-col(5,14);
+  #dragtray{
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    height: 40px;
+    width: 100px;
+    margin-left: -50px;
+    z-index: 910;
+    padding-top: 10px;
+
+    #dragtray-icon{
+      display: block;
+      background-color: #ccc;
+      height: 5px;
+      min-height: 5px;
+      width: 30px;
+      border-radius: 2.5px;
+      margin: auto;
+    }
+
+
+    &:hover{
+      cursor: pointer;
+      #dragtray-icon{
+       background-color: #000;
+       }
+    }
   }
-  @include make-col-auto();
-  height: $player_height;
-  text-align: center;
 
-}
-#player #player_controls button{
-  border: none;
-  background:none;
-}
+  #player_controls{
+    @include make-col-ready(0);
+    @include media-breakpoint-up(sm) {
+      @include make-col(5,14);
+    }
+    @include make-col-auto();
+    height: $player_height;
+    text-align: center;
+    button{
+      border: none;
+      background:none;
+      &:hover i{
+        color: #000;
+      }
+      i{
+        font-size: 50px; /* Preferred icon size */
+         color: #5f6368;
+         font-weight: 400;
+      }
+    }
 
-#player #player_controls button i{
-  font-size: 50px; /* Preferred icon size */
-   color: #5f6368;
-   font-weight: 400;
-}
+  }
 
-#player .options{
-  @include make-col-ready(0);
-  @include make-col(3,14);
-}
+  .options{
+    @include make-col-ready(0);
+    @include make-col(3,14);
+  }
 
-#player .cover{
-  @include make-col-ready(0);
-  @include make-col(2,14);
-}
+  .cover{
+    @include make-col-ready(0);
+    @include make-col(2,14);
+    img{
+      padding: $cover_padding;
+      height: $player_height - 2*$cover_padding;
+      width: $player_height - 2*$cover_padding;
+    }
+  }
+  .song_info{
+    @include make-col-ready(0);
+    @include make-col(4,14);
+    text-align: center;
+    .row{
+      text-align: center;
+    }
+  }
 
-#player .cover img{
-  padding: $cover_padding;
-  height: $player_height - 2*$cover_padding;
-  width: $player_height - 2*$cover_padding;
-}
-
-#player .song_info{
-  @include make-col-ready(0);
-  @include make-col(4,14);
-  text-align: center;
-}
-#player .song_info .row{
-  text-align: center;
 }
 
 

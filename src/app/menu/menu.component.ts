@@ -8,12 +8,12 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   animations: [
     trigger('slideInOut', [
       state('in', style({
-        //transform: 'translate3d(0, 0, 0)'
-        width:0
+        //width:0
+        transform: 'translateX(-350px)'
       })),
       state('out', style({
-        //transform: 'translate3d(100%, 0, 0)'
-        width:250
+        //width:300
+        transform: 'translateX(0px)'
       })),
       transition('in => out', animate('400ms ease-in-out')),
       transition('out => in', animate('400ms ease-in-out'))

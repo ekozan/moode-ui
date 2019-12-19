@@ -1,5 +1,6 @@
 import { Injectable, Output} from '@angular/core';
-import { Subject,Subscription} from 'rxjs';
+import { Subject,Subscription,Observable,fromEvent} from 'rxjs';
+
 import { Action } from './action';
 import { ACTIONS } from './actions.enum';
 
@@ -17,13 +18,18 @@ const ActionConfig = {
 })
 
 export class ActionService {
-  
+
   @Output()
    public action: Subject<Action> = new Subject();
 
   private preventClickAction: boolean = false;
 
-  constructor() {}
+  constructor() {
+    fromEvent(document, 'click')
+    .subscribe(event =>{
+      console.log("outside",event);
+    });
+  }
 
   handleAction(event:any, context:string, item:any){
 

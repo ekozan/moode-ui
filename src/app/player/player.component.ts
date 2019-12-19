@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, animate, transition, query,animateChild } from '@angular/animations';
 import { interval } from 'rxjs';
 import { Options } from 'ng5-slider';
 
@@ -14,11 +15,43 @@ import { delay } from 'rxjs/operators';
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
-  styleUrls: ['./player.component.scss']
+  styleUrls: ['./player.component.scss'],
+  animations: [
+    trigger('ngIfAnimation', [
+       transition(':enter, :leave', [
+         query('@*', animateChild())
+       ])
+     ]),
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition('void <=> *', animate('400ms ease-in-out')),
+    ]),
+    trigger('slideDock', [
+      state('hide', style({
+        //transform: 'translate3d(0, 0, 0)'
+        height:0
+      })),
+      state('minimize', style({
+        //transform: 'translate3d(100%, 0, 0)'
+        height:'100px'
+      })),
+      state('open', style({
+        //transform: 'translate3d(100%, 0, 0)'
+        height:'100%'
+      })),
+      transition('hide => minimize', animate('400ms ease-in-out')),
+      transition('minimize => hide', animate('400ms ease-in-out')),
+      transition('minimize => open', animate('400ms ease-in-out')),
+      transition('open => minimize', animate('400ms ease-in-out'))
+    ]),
+  ]
 })
 export class PlayerComponent implements OnInit {
    state: State;
    intervalsource = interval(500);
+   playerState: string = 'minimize';
 
    options: Options = {
      floor: 0,
@@ -71,6 +104,15 @@ export class PlayerComponent implements OnInit {
       this.ps.playPauseToggle();
   }
 
+  toggleHidePlayer(){
+    if (this.playerState != 'open'){
+      this.playerState = this.playerState === 'minimize' ? 'hide' : 'minimize';
+    }
+  }
+
+  toggleOpenPlayer(){
+    this.playerState = this.playerState === 'minimize' ? 'open' : 'minimize';
+  }
 
   private renderTimeBar(){
       if(this.state.state == "play"){

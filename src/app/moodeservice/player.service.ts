@@ -47,7 +47,6 @@ export class PlayerService {
       .set('state', this.state.state);
 
     this._httpClient.get<State>(`${this.engineApiURL}`,{ params: params })
-    .pipe(timeout(3000))
     .subscribe(
       (data) => {
           this.state = data;

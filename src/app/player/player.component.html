@@ -1,5 +1,10 @@
-<div id="player" (click)="openPlayer($event)">
-  <div class="row">
+<div id="player" [@slideDock]="playerState" [@ngIfAnimation]>
+
+  <div id="dragtray" (click)="toggleOpenPlayer($event)">
+    <span id="dragtray-icon"></span>
+  </div>
+
+  <div class="row" *ngIf="playerState=='minimize'" [@fadeInOut]>
     <div class="cover">
       <img src="{{moodeURL}}{{state.coverurl}}">
     </div>
