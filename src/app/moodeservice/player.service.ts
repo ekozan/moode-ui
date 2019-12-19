@@ -6,6 +6,7 @@ import { ActionService } from '../action-service/action-service.service';
 import { Action } from '../action-service/action';
 import { ACTIONS } from '../action-service/actions.enum';
 import { Subscription } from "rxjs";
+import { timeout } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -45,13 +46,18 @@ export class PlayerService {
     let params = new HttpParams()
       .set('state', this.state.state);
 
-    this._httpClient.get<State>(`${this.engineApiURL}`,{ params: params }).subscribe(
-      data => {
+    this._httpClient.get<State>(`${this.engineApiURL}`,{ params: params })
+    .pipe(timeout(3000))
+    .subscribe(
+      (data) => {
           this.state = data;
           //this.handleSetTimeOutEvent();
           this.event.emit(this.state);
           console.log(this.state);
           this.StateApiCall();
+      },
+      (error) => {
+        console.log (error);
       }
     );
   }
@@ -61,9 +67,14 @@ export class PlayerService {
     let params = new HttpParams()
       .set('cmd', cmd);
 
-    this._httpClient.get(`${this.cmdApiURL}`,{ params: params }).subscribe(
+    this._httpClient.get(`${this.cmdApiURL}`,{ params: params })
+    .pipe(timeout(3000))
+    .subscribe(
       data => {
           console.log(data);
+      },
+      (error) => {
+        console.log (error);
       }
     );
   }
@@ -79,9 +90,14 @@ export class PlayerService {
       postParms = postParms.append(`path[]`, path.replace(/ /g, '+'));
     })
 
-    this._httpClient.post(`${this.cmdApiURL}`,postParms,{ params: params }).subscribe(
+    this._httpClient.post(`${this.cmdApiURL}`,postParms,{ params: params })
+    .pipe(timeout(3000))
+    .subscribe(
       data => {
           console.log(data);
+      },
+      (error) => {
+        console.log (error);
       }
     );
   }

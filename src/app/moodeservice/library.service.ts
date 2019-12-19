@@ -1,7 +1,7 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient,HttpErrorResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map,timeout} from 'rxjs/operators';
 
 import { Track } from './track';
 import { Album } from './album';
@@ -34,6 +34,7 @@ export class LibraryService {
 
   public loadLibrary(){
       this._httpClient.get<Track[]>(`${this.apiURL}`)
+      .pipe(timeout(3000))
       .pipe(
          map((data: any[]) => data.map((item: any) => {
            const track = new Track();
@@ -51,8 +52,9 @@ export class LibraryService {
           });
           console.log(this.dataStore);
         },
-        (err: HttpErrorResponse) => {
-          console.log (err.message);
+        (error) => {
+          console.log (error);
+          this._tracks.next(Object.assign({}, this.dataStore).musics);
         }
       );
   }
